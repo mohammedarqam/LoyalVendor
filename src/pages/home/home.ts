@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController, AlertController, MenuController, IonicPage } from 'ionic-angular';
-//import * as firebase from 'firebase';
+import * as firebase from 'firebase';
 
 
 
@@ -11,37 +11,42 @@ import { NavController, ToastController, LoadingController, AlertController, Men
 })
 export class HomePage {
 
-//  sampleRef = firebase.database().ref("Samples/");
   public samples: Array<any> = [];
   totSamples: number = 0;
+
+  restName : string;
 
   constructor(
   public navCtrl: NavController,
   public toastCtrl : ToastController,
   public loadingCtrl : LoadingController,
-  public alertCtrl : AlertController,
   private menuCtrl : MenuController) {
     this.menuCtrl.enable(true);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+      }else{
+        this.navCtrl.setRoot("LoginPage");
+      }
+    });
   }
-
-  ionViewDidEnter() {
-  }
-
-
-/*  sampleFunction(){
+/*  getRestaurant(){
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Logging In...'
     });
     loading.present();
-    this.sampleRef.once('value', itemSnapshot => {
-      this.samples = [];
-      itemSnapshot.forEach(itemSnap => {
-        this.samples.push(itemSnap.val());
-        this.totSamples = this.samples.length;
-        return false;
-      });
-    });
-    loading.dismiss();
+
+      if (this.uid) {
+        firebase.database().ref("Restaurants Admins").child(this.uid).once('value',itemSnapshot=>{
+          var resId = itemSnapshot.val().AssociatedRestaurant;
+          firebase.database().ref("Restaurants/").child(resId).once('value',itemsnap=>{
+            this.restName = itemsnap.val().RestaurantName;
+            console.log(this.restName);
+            return false;
+          })
+        }).then(()=>{
+          loading.dismiss();
+        })
+      }
   }
 */
   presentToast(msg) {

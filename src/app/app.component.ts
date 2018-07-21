@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ToastController } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
 import * as firebase from 'firebase';
+import { MenuPage } from '../pages/Menu/menu/menu';
 @Component({
   templateUrl: 'app.html'
 })
@@ -15,11 +16,12 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any, icon: any }>;
 
-  constructor(public platform: Platform,) {
+  constructor(public platform: Platform,public toastCtrl : ToastController) {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Home', component: HomePage, icon: "home" },
+      { title: 'Home', component: "HomePage", icon: "home" },
+      { title: 'Menu', component: "MenuPage", icon: "md-paper" },
 
 
     ];
@@ -42,14 +44,22 @@ export class MyApp {
   }
 
   signOut() {
-/*    firebase.auth().signOut().then(() => {
-      this.nav.setRoot(MainLoginPage);
+    firebase.auth().signOut().then(() => {
+      this.nav.setRoot("LoginPage");
+      this.presentToast("Signing Out");
     }).catch((error) => {
       console.log(error.message);
     });
-  */
- this.nav.setRoot("LoginPage");
- 
+}
+
+
+presentToast(msg) {
+  let toast = this.toastCtrl.create({
+    message: msg,
+    duration: 4000,
+    showCloseButton: false,
+  });
+  toast.present();
 }
 
 }
