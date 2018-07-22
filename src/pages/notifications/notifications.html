@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  <ion-item no-lines class="content">
+  <h1 class="title">Notifications</h1>
+  </ion-item>
+
+  <ion-grid>
+      <ion-navbar color="primary" >
+        <ion-row>
+      <ion-col col-3>
+      <ion-title>Title</ion-title>
+      </ion-col>
+      <ion-col col-7>
+        <ion-title>Description</ion-title>
+      </ion-col>
+      <ion-col col-2>
+      <ion-title>Time Stamp</ion-title>
+      </ion-col>
+      </ion-row>
+  </ion-navbar>
+  
+  </ion-grid>
+  
+  <ion-card *ngFor="let noti of notificationsUnRead" >
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            {{noti.Notification}}
+          </ion-col>
+          <ion-col col-5>
+            {{noti.NotificationDescription}}
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button color="danger" (click)="read(noti)" clear icon-only>
+            <ion-icon name="ios-eye-off"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-2>
+            {{noti.TimeStamp}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  <ion-card *ngFor="let noti of notificationsRead" >
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            {{noti.Notification}}
+          </ion-col>
+          <ion-col col-5>
+            {{noti.NotificationDescription}}
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button clear color="primary" icon-only>
+            <ion-icon name="ios-eye"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-2>
+            {{noti.TimeStamp}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    
+
+</ion-content>

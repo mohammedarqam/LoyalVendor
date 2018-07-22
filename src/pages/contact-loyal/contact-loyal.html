@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  <ion-item no-lines class="content">
+  <h1 class="title">Complaint / Suggestion</h1>
+  <button ion-button item-end *ngIf="!addView" (click)="showForm()">Send a Concern</button>
+  <button ion-button item-end *ngIf="addView" (click)="hideForm()">Cancel</button>
+  </ion-item>
+
+
+  <ion-card *ngIf="addView" >
+      <ion-card-content>
+    
+  <ion-item  >
+    <ion-label floating>Your Concern</ion-label>
+    <ion-input type="text" [(ngModel)]="Concern" ></ion-input>
+  </ion-item>
+  <ion-item  >
+      <ion-label floating>Describe your Concern</ion-label>
+      <ion-textarea  [(ngModel)]="Des" ></ion-textarea>
+    </ion-item>
+<button ion-button [disabled]="!Concern||!Des" color="danger" (click)="sendConcern()">Send</button>
+
+</ion-card-content>
+</ion-card>
+
+<ion-grid>
+    <ion-navbar color="primary" >
+      <ion-row>
+    <ion-col>
+    <ion-title>Concern</ion-title>
+    </ion-col>
+    <ion-col>
+      <ion-title>Description</ion-title>
+    </ion-col>
+    <ion-col>
+    <ion-title>Status</ion-title>
+    </ion-col>
+    <ion-col>
+    <ion-title>Response</ion-title>
+    </ion-col>
+    </ion-row>
+</ion-navbar>
+
+</ion-grid>
+
+
+
+<ion-card *ngFor="let con of Concerns" >
+  <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            {{con.Concern}}
+          </ion-col>
+          <ion-col>
+            {{con.Description}}
+          </ion-col>
+          <ion-col>
+            {{con.Status}}
+          </ion-col>
+          <ion-col>
+            {{con.Response}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-card-content>
+    </ion-card>
+    
+
+
+</ion-content>

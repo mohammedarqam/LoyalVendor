@@ -1,0 +1,11 @@
+page-profile {
+    .card{
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        -webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        width: 80%;
+    }
+    
+}

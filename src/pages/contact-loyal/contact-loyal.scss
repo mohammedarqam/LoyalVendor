@@ -1,0 +1,9 @@
+page-contact-loyal {
+    ion-input{
+        border-bottom: 1px map-get($colors,primary) solid;
+    }
+    ion-textarea{
+        border-bottom: 1px map-get($colors,primary) solid;
+    }
+
+}

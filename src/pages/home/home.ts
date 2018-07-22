@@ -11,53 +11,65 @@ import * as firebase from 'firebase';
 })
 export class HomePage {
 
-  public samples: Array<any> = [];
-  totSamples: number = 0;
+restId = firebase.auth().currentUser.uid;
+  restRef= firebase.database().ref("Restaurants").child(this.restId);
+  restautant : Array<any> = [];
 
-  restName : string;
+  usersRef=firebase.database().ref("Restaurants/"+this.restId).child("/Users/");
+  totUsers: number = 0;
+
+  menuRef=firebase.database().ref("Menus/"+this.restId);
+  totmenuItems: number = 0;
+
+  Restaurants:any = [];
+
+uidi :string;
 
   constructor(
   public navCtrl: NavController,
-  public toastCtrl : ToastController,
-  public loadingCtrl : LoadingController,
   private menuCtrl : MenuController) {
     this.menuCtrl.enable(true);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        this.uidi =user.uid; 
       }else{
         this.navCtrl.setRoot("LoginPage");
       }
     });
+    console.log(this.uidi);
   }
-/*  getRestaurant(){
-    let loading = this.loadingCtrl.create({
-      content: 'Logging In...'
+
+  ionViewDidEnter(){
+    this.getusers();
+    this.getmenu();
+    this.getRestaurant();
+  }
+
+
+  getRestaurant(){
+    
+    this.restRef.once('value',itemSnapshot=>{
+      this.restautant = [];
+      this.restautant.push(itemSnapshot.val());
+      console.log(this.restautant);
     });
-    loading.present();
-
-      if (this.uid) {
-        firebase.database().ref("Restaurants Admins").child(this.uid).once('value',itemSnapshot=>{
-          var resId = itemSnapshot.val().AssociatedRestaurant;
-          firebase.database().ref("Restaurants/").child(resId).once('value',itemsnap=>{
-            this.restName = itemsnap.val().RestaurantName;
-            console.log(this.restName);
-            return false;
-          })
-        }).then(()=>{
-          loading.dismiss();
-        })
-      }
-  }
-*/
-  presentToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 4000,
-      showCloseButton: false,
-    });
-    toast.present();
+    }
 
 
-  }
+
+
+
+
+getusers(){
+  this.usersRef.once('value',itemSnapshot=>{
+    this.totUsers = itemSnapshot.numChildren();
+  });}
+
+getmenu(){
+  this.menuRef.once('value',itemSnapshot=>{
+    this.totmenuItems = itemSnapshot.numChildren();
+  });}
+
+
 
 }

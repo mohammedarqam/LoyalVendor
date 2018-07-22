@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-item no-lines class="content">
+<h1 class="title">Menu</h1>
+<button ion-button item-end  (click)="addItem()">Add an Item</button>
+</ion-item>
+
+
+<ion-searchbar animated="true" placeholder="Search an Item ..." [(ngModel)]="searchBar" (ionInput)="getItems(searchBar)"></ion-searchbar>
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col col-3 *ngFor="let item of menuItems" >
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            {{item.Name}}
+          </ion-card-title>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Price
+            </p>
+            <p item-end>{{item.Price}} </p>
+          </ion-item>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Ordered
+            </p>
+            <p item-end>{{item.Ordered}} </p>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
+</ion-content>

@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar color="primary">
+      <ion-buttons end>
+        <button ion-button (click)="done()">Done</button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-item no-lines class="content">
+<h1 class="title">User</h1>
+</ion-item>
+
+<div *ngFor ="let useram of userA">
+<ion-card>
+  <ion-card-content>
+    <ion-card-title>
+      {{user.Name}}
+    </ion-card-title>
+    <ion-item>
+    <p item-start ion-text color="primary">
+        Phone
+      </p>
+      <p item-end>{{useram.Phone}} </p>
+    </ion-item>
+    <ion-item>
+        <p item-start ion-text color="primary">
+        Email
+      </p>
+      <p item-end>{{useram.Email}} </p>
+    </ion-item>
+    <ion-item>
+        <p item-start ion-text color="primary">
+        Credit
+      </p>
+      <p item-end>{{user.Credit}} </p>
+    </ion-item>
+    <ion-item>
+        <p item-start ion-text color="primary">
+        Loyalty Status
+      </p>
+      <p item-end>{{user.Loyalty}} </p>
+    </ion-item>
+    <ion-item>
+        <p item-start ion-text color="primary">
+          Visits
+      </p>
+      <p item-end>{{user.Visits}} </p>
+    </ion-item>
+</ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-card-content>
+    <ion-avatar>
+      <img [src]="useram.ProPic"/>
+    </ion-avatar>
+  </ion-card-content>
+</ion-card>
+</div>
+</ion-content>

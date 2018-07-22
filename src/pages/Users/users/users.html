@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-item no-lines class="content">
+<h1 class="title">Users</h1>
+</ion-item>
+
+<ion-searchbar animated="true" placeholder="Search an Item ..." [(ngModel)]="searchBar" (ionInput)="getItems(searchBar)"></ion-searchbar>
+
+<ion-navbar color="primary">
+  <ion-title>Pending Loyalty</ion-title>
+</ion-navbar>
+
+<ion-grid>
+  <ion-row>
+    <ion-col col-3 *ngFor="let user of pendingUsers" (click)="getUserDetails(user)" >
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            {{user.Name}}
+          </ion-card-title>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Credit
+            </p>
+            <p item-end>{{user.Credit}} </p>
+          </ion-item>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Visits
+            </p>
+            <p item-end>{{user.Visits}} </p>
+          </ion-item>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Loyalty Status
+            </p>
+            <p item-end>{{user.Loyalty}} </p>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-navbar color="primary">
+  <ion-title>Loyal Customers</ion-title>
+</ion-navbar>
+<ion-grid>
+  <ion-row>
+    <ion-col col-3 *ngFor="let user of loyalUsers" (click)="getUserDetails(user)" >
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            {{user.Name}}
+          </ion-card-title>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Credit
+            </p>
+            <p item-end>{{user.Credit}} </p>
+          </ion-item>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Visits
+            </p>
+            <p item-end>{{user.Visits}} </p>
+          </ion-item>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Loyalty Status
+            </p>
+            <p item-end>{{user.Loyalty}} </p>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-navbar color="primary">
+  <ion-title>All Users</ion-title>
+</ion-navbar>
+<ion-grid>
+  <ion-row>
+    <ion-col col-3 *ngFor="let user of allUsers" (click)="getUserDetails(user)" >
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            {{user.Name}}
+          </ion-card-title>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Credit
+            </p>
+            <p item-end>{{user.Credit}} </p>
+          </ion-item>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Visits
+            </p>
+            <p item-end>{{user.Visits}} </p>
+          </ion-item>
+          <ion-item>
+            <p item-start ion-text color="primary">
+              Loyalty Status
+            </p>
+            <p item-end>{{user.Loyalty}} </p>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+</ion-content>
