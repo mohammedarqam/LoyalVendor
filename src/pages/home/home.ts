@@ -36,7 +36,6 @@ uidi :string;
         this.navCtrl.setRoot("LoginPage");
       }
     });
-    console.log(this.uidi);
   }
 
   ionViewDidEnter(){
@@ -51,7 +50,6 @@ uidi :string;
     this.restRef.once('value',itemSnapshot=>{
       this.restautant = [];
       this.restautant.push(itemSnapshot.val());
-      console.log(this.restautant);
     });
     }
 
