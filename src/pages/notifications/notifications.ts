@@ -18,10 +18,15 @@ export class NotificationsPage {
   notificationsRead : Array<any> = [];
   notificationsUnRead : Array<any> = [];
 
+  restRef= firebase.database().ref("Restaurants").child(this.restId);
+  restName :string;
+
+
   constructor(
   public navCtrl: NavController, 
   public navParams: NavParams) {
     this.getNoti();
+    this.getRestaurant();
   }
 
   getNoti(){
@@ -51,5 +56,11 @@ export class NotificationsPage {
     }) ;
   }
 
-
+  getRestaurant(){
+    this.restRef.once('value',itemSnapshot=>{
+      this.restName = itemSnapshot.val().RestaurantName;
+    });
+    }
+  
+  
 }

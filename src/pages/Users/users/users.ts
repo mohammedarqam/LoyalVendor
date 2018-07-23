@@ -21,12 +21,16 @@ export class UsersPage {
   pendingUsers : Array<any> = [];
   mainuserRef = firebase.database().ref("Users/");
 
+  restRef= firebase.database().ref("Restaurants").child(this.restId);
+  restName :string;
+
   constructor(
   public navCtrl: NavController, 
   public toastCtrl : ToastController,
   public modalCtrl : ModalController,
   public navParams: NavParams) {
     this.getusers();
+    this.getRestaurant();
   }
 
   getusers(){
@@ -86,5 +90,12 @@ getUserDetails(user){
   profileModal.present();
 
 }
+
+getRestaurant(){
+  this.restRef.once('value',itemSnapshot=>{
+    this.restName = itemSnapshot.val().RestaurantName;
+  });
+  }
+
 
 }

@@ -16,12 +16,17 @@ export class MenuPage {
   menuItems : Array<any> = [];
   menuItemsloaded : Array<any> = [];
 
+  restRef= firebase.database().ref("Restaurants").child(this.restId);
+  restName :string;
+
+
   constructor(
   public navCtrl: NavController,
   public toastCtrl : ToastController, 
   public alertCtrl : AlertController,
   public navParams: NavParams) {
     this.getMenuItems();
+    this.getRestaurant();
   }
 
 
@@ -51,10 +56,10 @@ export class MenuPage {
         {
           text: 'Add Item',
           handler: data => {
-            if (!data.Name||!data.price) {
+            if (data.Name&&data.Price) {
               this.sendItem(data.Name,data.Price)              
             } else {
-
+              this.presentToast("Cancelled");
             }
           }
         }
@@ -76,6 +81,7 @@ getMenuItems(){
       var temp = itemSnap.val();
       temp.key = itemSnap.key;
       tempArray.push(temp);
+      tempArray.reverse();
       return false;
     });
     this.menuItems = tempArray;
@@ -124,5 +130,12 @@ getItems(searchbar) {
     }
   });
 }
+
+getRestaurant(){
+  this.restRef.once('value',itemSnapshot=>{
+    this.restName = itemSnapshot.val().RestaurantName;
+  });
+  }
+
 
 }

@@ -22,8 +22,10 @@ restId = firebase.auth().currentUser.uid;
   totmenuItems: number = 0;
 
   Restaurants:any = [];
+  restName :string;
+  uidi :string;
+  totOrders : number = 0;
 
-uidi :string;
 
   constructor(
   public navCtrl: NavController,
@@ -46,8 +48,9 @@ uidi :string;
 
 
   getRestaurant(){
-    
     this.restRef.once('value',itemSnapshot=>{
+      this.restName = itemSnapshot.val().RestaurantName;
+      this.totOrders = itemSnapshot.val().TotalOrders;
       this.restautant = [];
       this.restautant.push(itemSnapshot.val());
     });
