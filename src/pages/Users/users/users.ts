@@ -14,15 +14,18 @@ export class UsersPage {
 
   restId = firebase.auth().currentUser.uid;
 
-  userRef = firebase.database().ref("Restaurants/"+this.restId).child("/Users/");
+  usersRef=firebase.database().ref("Restaurants LoyalUsers/"+this.restId);
   allUsers : Array<any> = [];
   allUsersLoaded : Array<any> = [];
   loyalUsers : Array<any> = [];
   pendingUsers : Array<any> = [];
   mainuserRef = firebase.database().ref("Users/");
+  mainArray : Array<any>=[];
 
   restRef= firebase.database().ref("Restaurants").child(this.restId);
   restName :string;
+
+  UserTypes : string = "AllUsers";
 
   constructor(
   public navCtrl: NavController, 
@@ -34,14 +37,18 @@ export class UsersPage {
   }
 
   getusers(){
-    this.userRef.once('value',itemSnapshot=>{
+    this.usersRef.once('value',itemSnapshot=>{
       let tempArray = [];
       this.pendingUsers=[];
       this.loyalUsers=[];
       itemSnapshot.forEach(itemSnap =>{
         var temp = itemSnap.val();
+        firebase.database().ref("Users/").child(itemSnap.key).once('value',go=>{
+          temp.Name = go.val().Name;
+        })
         temp.key = itemSnap.key;
         tempArray.push(temp);
+        console.log(temp);
         if(itemSnap.val().Loyalty == "Pending"){
             this.pendingUsers.push(temp);          
         }
@@ -52,6 +59,7 @@ export class UsersPage {
       });
       this.allUsers = tempArray;
       this.allUsersLoaded = tempArray;
+      this.mainArray = this.allUsers;
   });
 }
 
@@ -98,4 +106,17 @@ getRestaurant(){
   }
 
 
+  filter(){
+    switch (this.UserTypes) {
+      case "AllUsers": this.mainArray = this.allUsers;
+        break;
+      case "LoyalCustomers": this.mainArray = this.loyalUsers;
+        break;
+      case "PendingCustomers": this.mainArray = this.pendingUsers;
+        break;
+    
+      default: this.mainArray = this.allUsers;
+        break;
+    }
+}
 }

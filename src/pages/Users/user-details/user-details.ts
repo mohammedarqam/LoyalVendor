@@ -24,6 +24,7 @@ export class UserDetailsPage {
   public navCtrl: NavController, 
   public navParams: NavParams) {
     this.getUser();
+    console.log(this.user);
   }
 
   getUser(){

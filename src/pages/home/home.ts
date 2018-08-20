@@ -15,11 +15,13 @@ restId = firebase.auth().currentUser.uid;
   restRef= firebase.database().ref("Restaurants").child(this.restId);
   restautant : Array<any> = [];
 
-  usersRef=firebase.database().ref("Restaurants/"+this.restId).child("/Users/");
+  usersRef=firebase.database().ref("Restaurants LoyalUsers/"+this.restId);
   totUsers: number = 0;
 
   menuRef=firebase.database().ref("Menus/"+this.restId);
   totmenuItems: number = 0;
+
+  orderRef = firebase.database().ref("Restaurant Order").child(this.restId);
 
   Restaurants:any = [];
   restName :string;
@@ -44,6 +46,7 @@ restId = firebase.auth().currentUser.uid;
     this.getusers();
     this.getmenu();
     this.getRestaurant();
+    this.getOrders();
   }
 
 
@@ -71,6 +74,10 @@ getmenu(){
     this.totmenuItems = itemSnapshot.numChildren();
   });}
 
+getOrders(){
+  this.orderRef.once('value',itemSnapshot=>{
+    this.totOrders = itemSnapshot.numChildren();
+  });}
 
 
 }

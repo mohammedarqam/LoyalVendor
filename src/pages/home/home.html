@@ -13,12 +13,12 @@
 
 <ion-grid>
 <ion-row *ngFor="let rest of restautant" >
-<ion-col col-6>
+<ion-col col-3>
   <ion-card padding>
     <ion-card-content>
       <ion-item>
-        <ion-icon name="ios-person" class="iconsize" color="primary" item-start></ion-icon>
-        <h2>Total Users</h2>
+        <ion-icon name="ios-people" class="iconsize" color="primary" item-start></ion-icon>
+        <h2 class="toplil">Total Users</h2>
             </ion-item>
             <ion-item class="mainCur">
           <h1>{{totUsers}}</h1>
@@ -29,12 +29,12 @@
 </ion-col>
 
 
-<ion-col col-6>
+<ion-col col-3>
   <ion-card padding>
     <ion-card-content>
       <ion-item>
-        <ion-icon name="md-pizza" class="iconsize" color="primary" item-start></ion-icon>
-        <h2>Total Menu Items</h2>
+        <ion-icon name="md-paper" class="iconsize" color="primary" item-start></ion-icon>
+        <h2 class="toplil">Menu</h2>
             </ion-item>
             <ion-item class="mainCur">
           <h1>{{totmenuItems}}</h1>
@@ -44,12 +44,12 @@
   </ion-card>
 </ion-col>
 
-<ion-col col-6>
+<ion-col col-3>
   <ion-card padding>
     <ion-card-content>
       <ion-item>
-        <ion-icon name="md-pizza" class="iconsize" color="primary" item-start></ion-icon>
-        <h2>Credit to Customers</h2>
+        <ion-icon name="md-arrow-round-down" class="iconsize" color="primary" item-start></ion-icon>
+        <h2 class="toplil">Credit to Customers</h2>
             </ion-item>
             <ion-item class="mainCur">
           <h1 ion-text color="secondary">{{rest.CreditDue}}</h1>
@@ -59,12 +59,12 @@
   </ion-card>
 </ion-col>
 
-<ion-col col-6>
+<ion-col col-3>
   <ion-card padding>
     <ion-card-content>
       <ion-item>
-        <ion-icon name="md-pizza" class="iconsize" color="primary" item-start></ion-icon>
-        <h2>Amount Pending to Loyal</h2>
+        <ion-icon name="md-arrow-round-up" class="iconsize" color="primary" item-start></ion-icon>
+        <h2 class="toplil" >Amount Pending to Loyal</h2>
             </ion-item>
             <ion-item class="mainCur">
           <h1 ion-text color="danger">{{rest.AmountPendingToLoyal}}</h1>
@@ -74,12 +74,12 @@
   </ion-card>
 </ion-col>
 
-<ion-col col-6>
+<ion-col col-3>
   <ion-card padding>
     <ion-card-content>
       <ion-item>
-        <ion-icon name="md-pizza" class="iconsize" color="primary" item-start></ion-icon>
-        <h2>Total Orders</h2>
+        <ion-icon name="ios-cash" class="iconsize" color="primary" item-start></ion-icon>
+        <h2 class="toplil">Total Orders</h2>
             </ion-item>
             <ion-item class="mainCur">
           <h1>{{totOrders}}</h1>

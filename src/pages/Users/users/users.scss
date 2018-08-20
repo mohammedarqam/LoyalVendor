@@ -1,5 +1,35 @@
 page-users {
-ion-col{
-    cursor: pointer;
+
+.cardBack{
+    background: #ffffff;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.titleBar{
+    margin-top: 0;
+    background: map-get($colors,primary);
+    color: #ffffff;
+    padding: 5px;
+    font-size: 20px;
+}
+.noMarg{
+    margin: 0;
+    padding-bottom: 0;
+}
+.odd {
+    padding-top: 1%;
+    font-size: 18px;
+    color: #585858;
+    background: #F0F3F4;
+}
+.even {
+    padding-top: 1%;
+    font-size: 18px;
+    color: #585858;
+}
+.sel{
+    min-width: 100%;
+    background: map-get($colors,primary);
+    color: white;
 }
 }

@@ -23,7 +23,7 @@ export class MyApp {
       { title: 'Menu', component: "MenuPage", icon: "md-paper" },
       { title: 'Orders', component: "OrdersPage", icon: "ios-cash" },
       { title: 'Users', component: "UsersPage", icon: "ios-people" },
-      { title: 'Profile', component: "ProfilePage", icon: "ios-people" },
+      { title: 'Profile', component: "ProfilePage", icon: "ios-person" },
       { title: 'Notifications', component: "NotificationsPage", icon: "ios-mail" },
       { title: 'Contact Loyal', component: "ContactLoyalPage", icon: "ios-mail" },
 
